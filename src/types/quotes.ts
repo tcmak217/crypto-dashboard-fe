@@ -5,7 +5,3 @@ export interface IQuote {
   volume: string
   change: number
 }
-
-export interface IQuotes {
-  quotes: IQuote[]
-}

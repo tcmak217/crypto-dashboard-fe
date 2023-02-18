@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { getAllQuote } from "../../services/getQuote"
-import { IQuotes } from "../../types/quotes"
+import { IQuote } from "../../types/quotes"
 import Quote from "../Quote/Quote"
 
 function Dashboard() {
-  const [quotes, setQuotes] = useState<IQuotes | undefined>()
+  const [quotes, setQuotes] = useState<IQuote[] | undefined>()
 
   async function fetchQuote() {
     try {
