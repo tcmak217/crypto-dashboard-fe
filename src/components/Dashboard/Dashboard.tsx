@@ -20,7 +20,7 @@ function Dashboard() {
     fetchQuote()
   }, [])
 
-  return <></>
+  return <>{quotes && quotes.map((quote) => <div key={quote.id}>{quote.symbol}</div>)}</>
 }
 
 export default Dashboard
