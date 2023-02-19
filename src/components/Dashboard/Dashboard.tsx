@@ -10,7 +10,7 @@ function Dashboard() {
     try {
       const quoteData = await getAllQuote()
       console.log(quoteData)
-      setQuotes(quoteData)
+      setQuotes(quoteData.sort((a, b) => b.price - a.price))
     } catch (error) {
       console.error(error)
     }
