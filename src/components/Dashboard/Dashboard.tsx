@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react"
-import { getAllQuote } from "../../services/getQuote"
 import { IQuote } from "../../types/quotes"
 import Quote from "../Quote/Quote"
+import webSocket from "socket.io-client"
 
 function Dashboard() {
   const [quotes, setQuotes] = useState<IQuote[] | undefined>()
-
-  async function fetchQuote() {
-    try {
-      const quoteData = await getAllQuote()
-      console.log(quoteData)
-      setQuotes(quoteData.sort((a, b) => b.price - a.price))
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const [ws, setWs] = useState<any>()
 
   useEffect(() => {
-    fetchQuote()
+    const socket = webSocket("http://localhost:3000")
+    socket.emit("quotes", "")
+    setWs(socket)
   }, [])
+
+  useEffect(() => {
+    if (ws) {
+      ws.on("quotes", (quotes: IQuote[]) => {
+        setQuotes(quotes.sort((a, b) => b.price - a.price))
+      })
+    }
+  }, [ws])
 
   return (
     <>
