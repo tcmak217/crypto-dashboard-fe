@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { getAllQuote } from "../../services/getQuote"
 import { IQuote } from "../../types/quotes"
 import Quote from "../Quote/Quote"
@@ -20,7 +20,14 @@ function Dashboard() {
     fetchQuote()
   }, [])
 
-  return <>{quotes && quotes.map((quote) => <div key={quote.id}>{quote.symbol}</div>)}</>
+  return (
+    <>
+      <h1 className="font-bold text-4xl my-4">Cryptocurrency Realtime Price</h1>
+      <div className="flex flex-wrap justify-center sm:justify-start">
+        {quotes && quotes.map((quote) => <Quote key={quote.id} quote={quote}></Quote>)}
+      </div>
+    </>
+  )
 }
 
 export default Dashboard
