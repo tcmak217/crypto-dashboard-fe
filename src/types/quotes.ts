@@ -1,7 +1,8 @@
 export interface IQuote {
   id: number
   symbol: string
-  price: string
-  volume: string
+  cryptoName: string
+  price: number
+  volume: number
   change: number
 }
